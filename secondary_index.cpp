@@ -65,17 +65,16 @@ public:
     }
 
 private:
-    using TimestampRange   = multimap<int, const Record*>;
-    using KarmaRange       = multimap<int, const Record*>;
-    using UserIdRange      = multimap<string, const Record*>;
+    template<typename T>
+    using RecordRange   = multimap<T, const Record*>;
     struct DBRecord{
         Record record;
-        TimestampRange::iterator timestamp_range_it;
-        KarmaRange::iterator karma_range_it;
-        UserIdRange::iterator user_id_range_it;
+        RecordRange<int>::iterator timestamp_range_it;
+        RecordRange<int>::iterator karma_range_it;
+        RecordRange<string>::iterator user_id_range_it;
     };
     unordered_map<string, DBRecord> data_base;
-    TimestampRange timestamp_range;
-    KarmaRange karma_range;
-    UserIdRange user_id_range;
+    RecordRange<int> timestamp_range;
+    RecordRange<int> karma_range;
+    RecordRange<string> user_id_range;
 };
