@@ -16,7 +16,7 @@ namespace Ini{
     Document Load(istream &input){
         string line;
         Document res;
-        Section* current_section;
+        Section* current_section = nullptr;
         while (getline(input, line)){
             if(line.front() == '[' && line.back() == ']'){
                 current_section = &res.AddSection(line.substr(1, line.size() - 2));
